@@ -76,44 +76,39 @@
 /* Add this to your style.css file or in a <style> tag in the head */
 
 .search-box {
-  filter: drop-shadow(0 0 5px rgba(0, 132, 255, 0.5)) 
-          drop-shadow(0 0 10px rgba(0, 119, 255, 0.3))
-          drop-shadow(0 0 15px rgba(0, 89, 255, 0.2));
-  transition: filter 0.3s ease;
+  filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.5)) 
+          drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3))
+          drop-shadow(0 -12px 10px rgba(0, 89, 255, 0.2));
+  transition: filter 0.4s ease;
+  animation: pulse-glow 4s infinite;
 }
 
 .search-box:hover {
-  filter: drop-shadow(0 0 8px rgba(0, 140, 255, 0.7)) 
-          drop-shadow(0 0 15px rgba(0, 119, 255, 0.5))
-          drop-shadow(0 0 20px rgba(0, 89, 255, 0.3));
+  filter: drop-shadow(0 -6px 3px rgba(0, 140, 255, 0.7)) 
+          drop-shadow(0 -10px 5px rgba(0, 119, 255, 0.5))
+          drop-shadow(0 -14px 10px rgba(0, 89, 255, 0.3));
 }
 
-/* For the input text to stand out more against the glow */
-#searchInput {
-  color: white;
-  text-shadow: 0 0 5px rgba(0, 119, 255, 0.7);
-}
-
-/* Optional: Add a subtle glow animation */
+/* Adjust the animation to match */
 @keyframes pulse-glow {
   0% {
-      filter: drop-shadow(0 0 5px rgba(0, 132, 255, 0.5)) 
-              drop-shadow(0 0 10px rgba(0, 119, 255, 0.3))
-              drop-shadow(0 0 15px rgba(0, 89, 255, 0.2));
+      filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.2)) 
+              drop-shadow(0 -8px 10px rgba(0, 119, 255, 0.3))
+              drop-shadow(0 -12px 15px rgba(0, 89, 255, 0.5));
   }
   50% {
-      filter: drop-shadow(0 0 8px rgba(0, 140, 255, 0.7)) 
-              drop-shadow(0 0 15px rgba(0, 119, 255, 0.5))
-              drop-shadow(0 0 20px rgba(0, 89, 255, 0.3));
+      filter: drop-shadow(0 -6px 3px rgba(0, 140, 255, 0.6)) 
+              drop-shadow(0 -10px 5px rgba(0, 119, 255, 0.7))
+              drop-shadow(0 -14px 10px rgba(0, 89, 255, 0.8));
   }
   100% {
-      filter: drop-shadow(0 0 5px rgba(0, 132, 255, 0.5)) 
-              drop-shadow(0 0 10px rgba(0, 119, 255, 0.3))
-              drop-shadow(0 0 15px rgba(0, 89, 255, 0.2));
+      filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.2)) 
+              drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3))
+              drop-shadow(0 -12px 0px rgba(0, 89, 255, 0.4));
   }
 }
-
-/* Apply the animation if you want it to pulse */
-.search-box {
-  animation: pulse-glow 4s infinite;
+/* Make sure the input text remains visible */
+#searchInput {
+  color: white;
+  text-shadow: 0 0 6px rgba(0, 119, 255, 0.9); /* Add some padding so text doesn't touch the edge */
 }
