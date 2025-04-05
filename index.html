@@ -86,7 +86,7 @@
                 </filter>
             </defs>
         </svg>
-        <input type="text" placeholder="Enter ingredients for recipe" style="
+        <input type="text" id = "searchInput" placeholder="Enter ingredients for recipe" style="
         position: absolute;
         top: 52.2%; 
         left: 57%; 
@@ -99,7 +99,17 @@
         font-size: 1.4rem;
         text-align: left;
         font-family: Roboto Mono;
-        outline: none;" />
+        outline: none;"
+         />
+         <script>
+          const searchInput = document.getElementById('searchInput');
+        
+          searchInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+              window.location.href = 'recipes.html';
+            }
+          });
+        </script>
     </div>
 </body>
 
