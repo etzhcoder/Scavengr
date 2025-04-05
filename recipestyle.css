@@ -27,3 +27,8 @@ h1 {
     font-style: normal;
     color: #fff
 }
+
+#recipes {
+    scrollbar-width: thin;
+    padding-right: 4px;
+}

@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -65,6 +67,10 @@
                     <h1>Recipes</h1>
                 </div>
             </foreignObject>
+            <foreignObject x="12%" y="16%" width="600" height="640">
+                <div xmlns="http://www.w3.org/1999/xhtml" id="recipes"
+                     style="color:#fff;font-size:18px;line-height:1.4;overflow:auto;"></div>
+            </foreignObject>
         </svg>
     </span>
     <span class="map">
@@ -120,7 +126,12 @@
                     <h1>Map</h1>
                 </div>
             </foreignObject>
-            <foreignObject x="14.55%" y="17.2%" width="580" height="580">
+            <foreignObject x="14.5%" y="17.2%" width="580" height="580">
+                <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div id="map" style="height:580px;width:580px;border-radius:29px;"></div>
+                </div>
+            </foreignObject>
+            <foreignObject x="14.55%" y="17.2%" width="580" height="580" pointer-events="none">
                 <div xmlns="http://www.w3.org/1999/xhtml">
                     <svg width="580" height="580" viewBox="0 0 580 580" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_i_8_24)">
@@ -146,6 +157,7 @@
             </foreignObject>
         </svg>
     </span>
+    <script src="app.js"></script>
 </body>
 
 </html>
