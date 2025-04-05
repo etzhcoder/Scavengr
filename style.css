@@ -6,14 +6,23 @@
   
   body, html {
     height: 100%;
-    font-family: 'Playfair Display', serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0e0e1a;
+    width: 100%;
+    font-family: 'Share Tech Mono', serif;
+    background: linear-gradient(#0B0B15, #0C0D28);
     overflow: hidden;
   }
-  
+
+  svg, h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .search-box {
+    top: 56%
+  }
+
   .icon {
     margin-left: 10px;
     font-size: 20px;
