@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
     </div>
     <div class="glass-card">
         <h1 style="z-index: 10; font-size: 96px; color: #fff; top: 40%; left: 50.8%">Scavengr.</h1>
-        <svg width="1568" height="848" viewBox="0 0 1568 848" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="1568" height="848" viewBox="0 0 1568 848" fill="none" xmlns="http://www.w3.org/2000/svg" style="z-index: 1">
             <foreignObject x="-46.7" y="-77.7" width="1661.4" height="961.4">
                 <div xmlns="http://www.w3.org/1999/xhtml"
                     style="backdrop-filter:blur(52.85px);clip-path:url(#bgblur_0_1_5_clip_path);height:100%;width:100%">
@@ -65,7 +66,8 @@
         </svg>
     </div>
     <div class="search-bar">
-        <svg class="search-box" width="792" height="156" viewBox="0 0 792 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="search-box" width="792" height="156" viewBox="0 0 792 156" fill="none" style="z-index: 1"
+            xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d_1_40)">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M78 5C57.5655 5 41 21.5655 41 42C41 62.4345 57.5655 79 78 79H714C734.435 79 751 62.4345 751 42C751 21.5655 734.435 5 714 5H78ZM69.9867 30.4352C71.815 29.4923 73.8422 29.0002 75.8993 29C78.3214 28.9998 80.6947 29.6816 82.7475 30.9672C84.8004 32.2528 86.4497 34.0904 87.5069 36.2696C88.5641 38.4488 88.9864 40.8816 88.7254 43.2896C88.4645 45.6976 87.5309 47.9835 86.0314 49.8857L91.574 55.428C91.8504 55.7143 92.0034 56.0976 91.9999 56.4955C91.9965 56.8935 91.8369 57.2741 91.5555 57.5555C91.2741 57.8369 90.8934 57.9965 90.4955 57.9999C90.0976 58.0034 89.7142 57.8504 89.4279 57.574L83.8853 52.0316C82.2697 53.3048 80.373 54.1732 78.3534 54.5644C76.3338 54.9555 74.25 54.8581 72.2758 54.2801C70.3016 53.7022 68.4942 52.6605 67.0045 51.242C65.5147 49.8235 64.3858 48.0693 63.7119 46.1259C63.038 44.1823 62.8387 42.1059 63.1305 40.0697C63.4224 38.0335 64.1969 36.0966 65.3896 34.4206C66.5823 32.7446 68.1585 31.3782 69.9867 30.4352ZM68.9237 34.9245C67.0736 36.7745 66.0343 39.2836 66.0343 41.8999C66.0343 44.5161 67.0736 47.0252 68.9237 48.8752C70.7737 50.7252 73.2829 51.7645 75.8993 51.7645C78.5156 51.7645 81.0248 50.7252 82.8749 48.8752C84.7249 47.0252 85.7643 44.5161 85.7643 41.8999C85.7643 39.2836 84.7249 36.7745 82.8749 34.9245C81.0248 33.0746 78.5156 32.0353 75.8993 32.0353C73.2829 32.0353 70.7737 33.0746 68.9237 34.9245Z"
@@ -86,11 +88,11 @@
                 </filter>
             </defs>
         </svg>
-        <input type="text" 
-         id = "searchInput" placeholder="Enter ingredients for recipe" style="
+        <input type="text" id="searchInput" placeholder="Enter ingredients for recipe" style="
+        z-index: 3;
         position: absolute;
-        top: 52.4%; 
-        left: 57.5%; 
+        top: 52.1%; 
+        left: 56.9%; 
         transform: translate(-50%, -50%);
         width: 792px;
         height: 156px;
@@ -100,19 +102,57 @@
         font-size: 1.4rem;
         text-align: left;
         font-family: Roboto Mono;
-        outline: none;"
-         />
-         
-         <script>
-          const searchInput = document.getElementById('searchInput');
-        
-          searchInput.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-              window.location.href = 'recipes.html';
-            }
-          });
+        outline: none;" />
+
+        <script>
+            const searchInput = document.getElementById('searchInput');
+
+            searchInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    window.location.href = 'recipes.html';
+                }
+            });
         </script>
     </div>
 </body>
 
 </html>
+<script>
+    const shapes = [
+        `<svg width="402" height="402" viewBox="0 0 402 402" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="99.5" cy="302.5" r="302.5" fill="url(#paint0_linear_1_6)"/><defs><linearGradient id="paint0_linear_1_6" x1="99.5" y1="0" x2="99.5" y2="605" gradientUnits="userSpaceOnUse"><stop stop-color="#438A64"/><stop offset="1" stop-opacity="0"/></linearGradient></defs></svg>`,
+        `<svg width="345" height="420" viewBox="0 0 345 420" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="231.5" cy="188.5" r="231.5" fill="url(#paint0_linear_1_8)"/><defs><linearGradient id="paint0_linear_1_8" x1="231.5" y1="-43" x2="231.5" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#43758A"/><stop offset="1" stop-opacity="0"/></linearGradient></defs></svg>`,
+        `<svg width="184" height="229" viewBox="0 0 184 229" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect x="-45" y="83.55" width="167.1" height="167.1" transform="rotate(-30 -45 83.55)" fill="url(#paint0_linear_1_7)"/> <defs> <linearGradient id="paint0_linear_1_7" x1="102.863" y1="72.4436" x2="-82.4981" y2="376.499" gradientUnits="userSpaceOnUse"> <stop stop-color="#E27856"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+        `<svg width="409" height="251" viewBox="0 0 409 251" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect width="408.753" height="408.753" transform="matrix(-0.963943 -0.266109 -0.266109 0.963943 502.788 108.773)" fill="url(#paint0_linear_1_10)"/> <defs> <linearGradient id="paint0_linear_1_10" x1="361.697" y1="-27.1681" x2="106.956" y2="438.5" gradientUnits="userSpaceOnUse"> <stop stop-color="#E2C456"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+        `<svg width="276" height="177" viewBox="0 0 276 177" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect y="58.2361" width="225.007" height="225.007" transform="rotate(-15 0 58.2361)" fill="url(#paint0_linear_1_19)"/> <defs> <linearGradient id="paint0_linear_1_19" x1="164.791" y1="42.1013" x2="98.5588" y2="295.079" gradientUnits="userSpaceOnUse"> <stop stop-color="#4F5C9F"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+        `<svg width="319" height="340" viewBox="0 0 319 340" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M-0.00613648 339.324L38.2786 0.346971L318.74 197.19L-0.00613648 339.324Z" fill="url(#paint0_linear_1_12)"/> <defs> <linearGradient id="paint0_linear_1_12" x1="39.633" y1="-0.256993" x2="58.5" y2="551.5" gradientUnits="userSpaceOnUse"> <stop stop-color="#9F78B7"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+        `<svg width="224" height="218" viewBox="0 0 224 218" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M223.739 0.154586L163.494 217.737L0.633438 59.9357L223.739 0.154586Z" fill="url(#paint0_linear_1_13)"/> <defs> <linearGradient id="paint0_linear_1_13" x1="162.546" y1="217.991" x2="207.545" y2="-144.606" gradientUnits="userSpaceOnUse"> <stop stop-color="#788AB7"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+        `<svg width="551" height="386" viewBox="0 0 551 386" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M550.326 385.172L362.23 -128.066L0.196385 284.709L550.326 385.172Z" fill="url(#paint0_linear_1_15)"/> <defs> <linearGradient id="paint0_linear_1_15" x1="359.892" y1="-128.493" x2="539.665" y2="737.685" gradientUnits="userSpaceOnUse"> <stop stop-color="#AAAE7A"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+    ];
+
+    const positionlist = [
+        [300, 780],
+        [1500, 200],
+        [100, 400],
+        [1400, 750],
+        [1000, 850],
+        [1100, 450],
+        [650, 610],
+        [550, 200],
+    ]
+
+    const svgShapes = [];
+    shapes.forEach((svg, index) => {
+        const container = document.createElement("div");
+        container.innerHTML = svg;
+        const svgElement = container.firstChild;
+        svgElement.style.position = "fixed";
+        svgElement.style.left = positionlist[index][0] + "px";
+        svgElement.style.top = positionlist[index][1] + "px";
+        svgElement.style.width = "";
+        svgElement.style.height = "";
+        svgElement.style.overflow = "visible";
+        svgElement.style.zIndex = "0";
+        document.body.appendChild(svgElement);
+        svgShapes.push(svgElement);
+    });
+</script>
