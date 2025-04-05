@@ -22,3 +22,20 @@ def generate_response(messages, model="gpt-4o-mini", max_tokens = 1000, temperat
         return response.choices[0].message.content
     except openai.OpenAIError as e:
         return f"Error: {str(e)}"
+    
+def chat_cli():
+    system = {"role": "system", "content": "You are a helpful assistant."}
+    history = [system]
+
+    while True:
+        user = input("You › ").strip()
+        if user.lower() in {"exit", "quit"}:
+            break
+
+        history.append({"role": "user", "content": user})
+        reply = generate_response(history)
+        print(f"Bot › {reply}\n")
+        history.append({"role": "assistant", "content": reply})
+
+if __name__ == "__main__":
+    chat_cli()
