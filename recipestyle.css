@@ -1,0 +1,29 @@
+body,
+html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Share Tech Mono', monospace;
+    background: linear-gradient(#0B0B15, #0C0D28);
+    overflow: hidden;
+}
+
+.listrect {
+    position: relative;
+    top: 50%;
+    left: 25%;
+    transform: translate(-47.5%, -50%);
+}
+
+.maprect {
+    position: relative;
+    top: 50%;
+    transform: translate(-2.5%, -50%);
+}
+
+h1 {
+    z-index: 2;
+    font-size: 48px;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff
+}
