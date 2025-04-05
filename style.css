@@ -39,4 +39,25 @@
     0% { transform: translateY(0px); }
     100% { transform: translateY(20px); }
   }
-  
+
+  .button {
+    background: linear-gradient(90deg, #00F0FF 0%, #FF007C 100%);
+    color: #0A0A0A;
+    border-radius: 2rem;
+    padding: 0.75rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25);
+    transition: all 0.3s ease;
+  }
+  .button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 25px rgba(0, 240, 255, 0.4);
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+::placeholder {
+  color: black;
+  font-family: "Roboto Mono" monospace;
+}

@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Scavengr Search</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="background">
@@ -50,7 +53,8 @@
       </svg>        
     </div>
     <div class="search-bar">
-        <svg width="792" height="156" viewBox="0 0 792 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="792" height="156" viewBox="0 0 792 156" fill="none" xmlns="http://www.w3.org/2000/svg"
+        style=" position: absolute; top:55%; left: 50%; transform: translate(-50%, -50%);"
             <g filter="url(#filter0_d_1_40)">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M78 5C57.5655 5 41 21.5655 41 42C41 62.4345 57.5655 79 78 79H714C734.435 79 751 62.4345 751 42C751 21.5655 734.435 5 714 5H78ZM69.9867 30.4352C71.815 29.4923 73.8422 29.0002 75.8993 29C78.3214 28.9998 80.6947 29.6816 82.7475 30.9672C84.8004 32.2528 86.4497 34.0904 87.5069 36.2696C88.5641 38.4488 88.9864 40.8816 88.7254 43.2896C88.4645 45.6976 87.5309 47.9835 86.0314 49.8857L91.574 55.428C91.8504 55.7143 92.0034 56.0976 91.9999 56.4955C91.9965 56.8935 91.8369 57.2741 91.5555 57.5555C91.2741 57.8369 90.8934 57.9965 90.4955 57.9999C90.0976 58.0034 89.7142 57.8504 89.4279 57.574L83.8853 52.0316C82.2697 53.3048 80.373 54.1732 78.3534 54.5644C76.3338 54.9555 74.25 54.8581 72.2758 54.2801C70.3016 53.7022 68.4942 52.6605 67.0045 51.242C65.5147 49.8235 64.3858 48.0693 63.7119 46.1259C63.038 44.1823 62.8387 42.1059 63.1305 40.0697C63.4224 38.0335 64.1969 36.0966 65.3896 34.4206C66.5823 32.7446 68.1585 31.3782 69.9867 30.4352ZM68.9237 34.9245C67.0736 36.7745 66.0343 39.2836 66.0343 41.8999C66.0343 44.5161 67.0736 47.0252 68.9237 48.8752C70.7737 50.7252 73.2829 51.7645 75.8993 51.7645C78.5156 51.7645 81.0248 50.7252 82.8749 48.8752C84.7249 47.0252 85.7643 44.5161 85.7643 41.8999C85.7643 39.2836 84.7249 36.7745 82.8749 34.9245C81.0248 33.0746 78.5156 32.0353 75.8993 32.0353C73.2829 32.0353 70.7737 33.0746 68.9237 34.9245Z" fill="white" fill-opacity="0.29" shape-rendering="crispEdges"/>
             </g>
@@ -66,7 +70,25 @@
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_40" result="shape"/>
             </filter>
             </defs>
-        </svg>   
+        </svg>  
+        <input 
+        type="text" 
+        placeholder="Enter ingredients for recipe" 
+        style="
+            position: absolute;
+            top:51.5%; 
+            left: 78%; 
+            transform: translate(-50%, -50%);
+            width: 90%;  /* Adjust to fit inside your svg shape */
+            height: 90%; /* Adjust based on your design */
+            background: transparent;
+            border: none;
+            color: black;  /* Make text visible */
+            font-size: 1.4rem;
+            text-align: left;
+            outline: none;
+        "
+    />
     </div>
   </div>
 </body>
