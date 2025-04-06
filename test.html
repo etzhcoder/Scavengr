@@ -56,7 +56,7 @@
 
       predictions.forEach(prediction => {
         // Filter for common food items; adjust as needed
-        if (["apple", "orange", "watermelon", "broccoli", "carrot", "sandwich", "hot dog"].includes(prediction.class)) {
+        if (["apple", "orange", "banana", "broccoli", "carrot", "sandwich", "hot dog"].includes(prediction.class)) {
           // Draw bounding box
           const [x, y, width, height] = prediction.bbox;
           ctx.strokeStyle = "red";

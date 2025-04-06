@@ -160,3 +160,11 @@ h1 {
     left: 49.8%
   }
 }
+
+.upload-button:hover {
+  cursor: pointer;
+}
+
+.close-button:hover {
+  cursor: pointer;
+}
