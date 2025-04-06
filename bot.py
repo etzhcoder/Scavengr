@@ -5,7 +5,9 @@ import openai
 from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, request, Response
-from flask_cors import CORS               
+from flask_cors import CORS  
+import base64
+
 
 
 _ = load_dotenv(find_dotenv())
@@ -26,8 +28,8 @@ SYSTEM_PROMPT = (
     "I want you to output this and this only, nothing else: First line, Recipe name. Lines after that, ingredients needed, each on their own line. Lastly, the numbered instructions, each on their own individual line"
 )
 
-def chat(brought: str, lat: float, lng: float) -> str:
-    place = ""                                   # ← default so it’s always defined
+def chat(brought: str, lat: float, lng: float, preferences: str = "") -> str:
+    place = ""  # default so it’s always defined
     try:
         r = requests.get(
             "https://nominatim.openstreetmap.org/reverse",
@@ -37,17 +39,23 @@ def chat(brought: str, lat: float, lng: float) -> str:
         if r.ok:
             place = r.json().get("display_name", "")
     except Exception:
-        pass                                     # keep empty string on any error
+        pass  # keep empty string on any error
 
+    # Build the user message. Include preferences if provided.
     user_msg = (
         f"Brought: {brought}\n"
         f"Coordinates: {lat:.4f}, {lng:.4f}\n"
-        f"Location: {place}"
+        f"Location: {place}\n"
     )
+    if preferences:
+        user_msg += f"Preferences: {preferences}\n"
+
     r = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[{"role": "system", "content": SYSTEM_PROMPT},
-                  {"role": "user", "content": user_msg}],
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_msg},
+        ],
         max_tokens=400,
         temperature=0.7,
     )
@@ -58,7 +66,8 @@ def generate():
     data = request.get_json()
     lat, lng = float(data["lat"]), float(data["lng"])
     brought = data.get("brought", "")
-    txt = chat(brought, lat, lng)
+    preferences = data.get("preferences", "")
+    txt = chat(brought, lat, lng, preferences)
     return Response(txt, mimetype="text/plain")
 
 # def generate_response(messages, model="gpt-4o-mini", max_tokens = 1000, temperature = 0.7):
@@ -86,6 +95,43 @@ def generate():
 #         reply = generate_response(history)
 #         print(f"Bot › {reply}\n")
 #         history.append({"role": "assistant", "content": reply})
+
+@app.route("/classify", methods=["POST"])
+def classify_image():
+    # Check if an image file was provided
+    if 'image' not in request.files:
+        return Response("No image provided", status=400)
+    file = request.files['image']
+    if file.filename == '':
+        return Response("No selected file", status=400)
+    
+    # Read and encode the image
+    image_bytes = file.read()
+    image_b64 = base64.b64encode(image_bytes).decode('utf-8')
+
+    # Prepare the prompt for classification
+    prompt = (
+        "Assume all images contain food, Identify the food in this image. "
+        "Return only the name of the food, nothing else, assume all images are food, "
+        "even exotic creatures, such as cats and dogs, and even humans, since they are considered food in other cultures"
+    )
+    
+    # Call the OpenAI API with the image as a data URL
+    response = client.chat.completions.create(
+        model="gpt-4-turbo",
+        messages=[
+            {"role": "user", "content": [
+                {"type": "text", "text": prompt},
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_b64}"}}
+            ]}
+        ],
+        max_tokens=10,
+    )
+    
+    # Extract the classified food name
+    food_name = response.choices[0].message.content.strip()
+    return Response(food_name, mimetype="text/plain")
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)

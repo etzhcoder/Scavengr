@@ -27,7 +27,7 @@ h1 {
   top: 52%
 }
 
-.allergy-box {
+.preferences-box {
   top: 61.7%;
   left: 38.75%
 }
@@ -69,7 +69,7 @@ h1 {
   left: 52.8%;  
 }
 
-.allergy-btn:hover {
+.preferences-btn:hover {
   cursor: pointer;
 }
 

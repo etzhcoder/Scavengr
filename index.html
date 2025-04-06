@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
         rel="stylesheet">
+    <script type="module" src="ingredients.js"></script>
 </head>
 
 <body>
@@ -104,20 +105,14 @@
         text-align: left;
         font-family: Roboto Mono;
         outline: none" />
-
-        <script>
-            const searchInput = document.getElementById('searchInput');
-
-            searchInput.addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    window.location.href = 'recipes.html';
-                }
-            });
-        </script>
     </div>
-    <div class="add-allergy">
-        <button class = "allergy-btn" onclick="location.href='signup.html'">
-        <svg class="allergy-box" width="427" height="156" viewBox="0 0 427 156" fill="none"
+    <div id="ingredientList" style="position:absolute; top:70%; left:50%; transform:translate(-50%,0%);
+       background: rgba(255,255,255,0.8); padding: 1rem; border-radius: 8px;">
+    <!-- Ingredient items will be added here -->
+  </div>
+    <div class="add-preferences">
+        <button class = "preferences-btn">
+        <svg class="preferences-box" width="427" height="156" viewBox="0 0 427 156" fill="none"
             xmlns="http://www.w3.org/2000/svg" style="z-index: 1">
             <g filter="url(#filter0_d_37_110)">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -141,14 +136,17 @@
             <foreignObject x="-3.8%" y="-2%" width="400" height="100" style="font-family: Roboto Mono; color: black;
             font-size: 11;">
                 <div xmlns="http://www.w3.org/1999/xhtml">
-                    <h1>Add allergy</h1>
+                    <h1>Add preferences</h1>
                 </div>
             </foreignObject>
         </svg>
         </button>
     </div>
+
+    <input type="file" id="imageInput" accept="image/*" style="display:none;">
+
     <div class="add-image">
-        <button class = "img-btn" onclick="location.href='login.html'">
+        <button class = "img-btn" id="imgUploadBtn">
         <svg class="image-box" width="427" height="156" viewBox="0 0 427 156" fill="none"
             xmlns="http://www.w3.org/2000/svg" style="z-index: 1">
             <g filter="url(#filter0_d_37_109)">
@@ -179,6 +177,108 @@
         </svg>
         </button>
     </div>
+    <script type="module">
+      // ===== Universal Ingredient List Code =====
+      const ingredientKey = 'campingIngredients';
+  
+      function getIngredients() {
+        const stored = localStorage.getItem(ingredientKey);
+        return stored ? JSON.parse(stored) : [];
+      }
+  
+      function renderIngredients() {
+        const ingredientList = document.getElementById('ingredientList');
+        const ingredients = getIngredients();
+        ingredientList.innerHTML = '';
+        if (ingredients.length === 0) {
+          ingredientList.textContent = "No ingredients added yet.";
+        } else {
+          ingredients.forEach(ingredient => {
+            const item = document.createElement('div');
+            item.textContent = ingredient;
+            ingredientList.appendChild(item);
+          });
+        }
+      }
+  
+      function syncInputToStorage() {
+        let ingredients = searchInput.value.split(',')
+          .map(item => item.trim())
+          .filter(Boolean);
+        localStorage.setItem(ingredientKey, JSON.stringify(ingredients));
+        searchInput.value = ingredients.join(', ');
+        renderIngredients();
+      }
+  
+      // ===== Handling the Search Input =====
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('keydown', (event) => {
+        // If Shift+Enter is pressed, switch to recipes.html (results screen)
+        if (event.key === 'Enter' && event.shiftKey) {
+          event.preventDefault();
+          // Make sure to sync any current input first
+          syncInputToStorage();
+          window.location.href = "recipes.html";
+        } else if (event.key === 'Enter') {
+          event.preventDefault();
+          syncInputToStorage();
+        }
+      });
+  
+      document.addEventListener('DOMContentLoaded', () => {
+        const ingredients = getIngredients();
+        if (ingredients.length) {
+          searchInput.value = ingredients.join(', ');
+        }
+        renderIngredients();
+      });
+  
+      // ===== Image Upload Handling =====
+      const imgUploadBtn = document.getElementById('imgUploadBtn');
+      const imageInput = document.getElementById('imageInput');
+  
+      imgUploadBtn.addEventListener('click', () => {
+        imageInput.click();
+      });
+  
+      imageInput.addEventListener('change', async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+  
+        const formData = new FormData();
+        formData.append('image', file);
+  
+        try {
+          const response = await fetch('http://127.0.0.1:5000/classify', {
+            method: 'POST',
+            body: formData,
+          });
+          const foodName = await response.text();
+          let ingredients = searchInput.value.split(',')
+            .map(item => item.trim())
+            .filter(Boolean);
+          if (!ingredients.includes(foodName)) {
+            ingredients.push(foodName);
+          }
+          localStorage.setItem(ingredientKey, JSON.stringify(ingredients));
+          searchInput.value = ingredients.join(', ');
+          renderIngredients();
+        } catch (err) {
+          console.error(err);
+          alert('Error classifying image.');
+        }
+      });
+  
+      // ===== Preferences Handling =====
+      const preferencesBtn = document.querySelector('.preferences-btn');
+      preferencesBtn.addEventListener('click', () => {
+        const prefs = prompt("Enter your food preferences (e.g. vegetarian, spicy, low-carb):");
+        if (prefs !== null) {
+          localStorage.setItem('campingPreferences', prefs.trim());
+          alert("Preferences saved!");
+        }
+      });
+    </script>
 </body>
 
 </html>
