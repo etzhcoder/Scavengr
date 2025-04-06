@@ -23,6 +23,23 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
+.modal {
+  position:absolute;
+  pointer-events:none;
+  z-index: 10;
+  opacity: 0
+}
+
+.campopup {
+  z-index: 10;
+  top: 50%
+}
+
+.cambackground {
+  top: -50%;
+  left: 0
+}
+
 .search-box {
   top: 52%
 }
@@ -37,6 +54,12 @@ h1 {
   left: 61.4%
 }
 
+#webcam-feed {
+  height: 400px;
+  width: 650px;
+  object-fit: cover;
+}
+
 ::placeholder {
   color: black;
   font-family: "Roboto Mono" monospace;
@@ -47,12 +70,12 @@ h1 {
 }
 
 
-.text-input:hover ~ .search-box {
+.text-input:hover~.search-box {
   animation: fade-in-and-pulse 3s infinite;
 }
 
 
-.text-input:not(:hover) ~ .search-box {
+.text-input:not(:hover)~.search-box {
   animation: fade-out 0.5s forwards;
 }
 
@@ -86,17 +109,23 @@ h1 {
   animation: fade-out 0.5s forwards;
 }
 
+.animate {
+  animation: fade-in-up 0.7s ease forwards;
+}
 
 @keyframes fade-in-and-pulse {
   0% {
     filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
   }
+
   33% {
     filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.5));
   }
+
   66% {
     filter: drop-shadow(0 -6px 10px rgba(0, 140, 255, 0.8));
   }
+
   100% {
     filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
   }
@@ -107,7 +136,27 @@ h1 {
   0% {
     filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.5));
   }
+
+  50% {
+    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
+  }
+
   100% {
     filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
+
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    top: 60%;
+    left: 49.8%
+  }
+
+  100% {
+    opacity: 1;
+    top: 50%;
+    left: 49.8%
   }
 }

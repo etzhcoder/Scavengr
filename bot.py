@@ -26,11 +26,12 @@ SYSTEM_PROMPT = (
     "Then produce **one concise recipe** they can cook, each on its own line. "
     "Your output should consist of the following: "
     "• The first line is the recipe name. "
-    "• The following lines list the ingredients needed. "
+    "• The following lines list the ingredients needed with a line after between each ingredient. "
     "• After that, list the numbered instructions, one per line. "
     "In addition, for any ingredient that might be hard to find or if a substitution could improve the recipe based on the camper's preferences, "
     "provide smart substitution suggestions. "
     "Ensure the recipe is personalized and takes into account both the wild foraged ingredients and the camper's stated preferences."
+    r"Format line breaks using \n"
 )
 
 def chat(brought: str, lat: float, lng: float, preferences: str = "") -> str:
