@@ -1,114 +1,92 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body, html {
-    height: 100%;
-    width: 100%;
-    font-family: 'Share Tech Mono', monospace;
-    background: linear-gradient(#0B0B15, #0C0D28);
-    overflow: hidden;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  svg, h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-weight: 400;
-    font-style: normal;
-    transform: translate(-50%, -50%);
-  }
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Share Tech Mono', monospace;
+  background: linear-gradient(#0B0B15, #0C0D28);
+  overflow: hidden;
+}
 
-  .search-box {
-    top: 56%
-  }
+svg,
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 400;
+  font-style: normal;
+  transform: translate(-50%, -50%);
+}
 
-  .icon {
-    margin-left: 10px;
-    font-size: 20px;
-  }
-  
-  .background::before {
-    width: 400px;
-    height: 400px;
-    background: #ff6f91;
-    top: -100px;
-    left: -100px;
-  }
-  
-  .background::after {
-    width: 600px;
-    height: 600px;
-    background: #6a82fb;
-    bottom: -150px;
-    right: -150px;
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(20px); }
-  }
+.search-box {
+  top: 52%
+}
 
-  .button {
-    background: linear-gradient(90deg, #00F0FF 0%, #FF007C 100%);
-    color: #0A0A0A;
-    border-radius: 2rem;
-    padding: 0.75rem 1.5rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25);
-    transition: all 0.3s ease;
-  }
-  .button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 25px rgba(0, 240, 255, 0.4);
-  }
+.allergy-box {
+  top: 61.7%;
+  left: 38.75%
+}
 
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+.image-box {
+  top: 61.7%;
+  left: 61.4%
+}
+
+.icon {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.background::before {
+  width: 400px;
+  height: 400px;
+  background: #ff6f91;
+  top: -100px;
+  left: -100px;
+}
+
+.background::after {
+  width: 600px;
+  height: 600px;
+  background: #6a82fb;
+  bottom: -150px;
+  right: -150px;
+}
 
 ::placeholder {
   color: black;
   font-family: "Roboto Mono" monospace;
 }
 
-/* Add this to your style.css file or in a <style> tag in the head */
-
-.search-box {
-  filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.5)) 
-          drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3))
-          drop-shadow(0 -12px 10px rgba(0, 89, 255, 0.2));
-  transition: filter 0.4s ease;
-  animation: pulse-glow 4s infinite;
+.hover-box {
+  z-index: 10;
+  top: 48%;
+  left: 52.8%;  
 }
 
 .search-box:hover {
-  filter: drop-shadow(0 -6px 3px rgba(0, 140, 255, 0.7)) 
-          drop-shadow(0 -10px 5px rgba(0, 119, 255, 0.5))
-          drop-shadow(0 -14px 10px rgba(0, 89, 255, 0.3));
+    filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.5)) 
+            drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3))
+            drop-shadow(0 -12px 10px rgba(0, 89, 255, 0.2));
+    transition: filter 0.4s ease;
+    animation: pulse-glow 4s infinite;
 }
 
-/* Adjust the animation to match */
 @keyframes pulse-glow {
   0% {
-      filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.2)) 
-              drop-shadow(0 -8px 10px rgba(0, 119, 255, 0.3))
-              drop-shadow(0 -12px 15px rgba(0, 89, 255, 0.5));
+    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.2)) drop-shadow(0 -8px 10px rgba(0, 119, 255, 0.3)) drop-shadow(0 -12px 15px rgba(0, 89, 255, 0.5));
   }
+
   50% {
-      filter: drop-shadow(0 -6px 3px rgba(0, 140, 255, 0.6)) 
-              drop-shadow(0 -10px 5px rgba(0, 119, 255, 0.7))
-              drop-shadow(0 -14px 10px rgba(0, 89, 255, 0.8));
+    filter: drop-shadow(0 -6px 3px rgba(0, 140, 255, 0.6)) drop-shadow(0 -10px 5px rgba(0, 119, 255, 0.7)) drop-shadow(0 -14px 10px rgba(0, 89, 255, 0.8));
   }
+
   100% {
-      filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.2)) 
-              drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3))
-              drop-shadow(0 -12px 0px rgba(0, 89, 255, 0.4));
+    filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.2)) drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3)) drop-shadow(0 -12px 0px rgba(0, 89, 255, 0.4));
   }
-}
-/* Make sure the input text remains visible */
-#searchInput {
-  color: white;
-  text-shadow: 0 0 6px rgba(0, 119, 255, 0.9); /* Add some padding so text doesn't touch the edge */
 }
