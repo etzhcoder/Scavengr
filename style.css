@@ -37,63 +37,77 @@ h1 {
   left: 61.4%
 }
 
-.icon {
-  margin-left: 10px;
-  font-size: 20px;
-}
-
-.background::before {
-  width: 400px;
-  height: 400px;
-  background: #ff6f91;
-  top: -100px;
-  left: -100px;
-}
-
-.background::after {
-  width: 600px;
-  height: 600px;
-  background: #6a82fb;
-  bottom: -150px;
-  right: -150px;
-}
-
 ::placeholder {
   color: black;
   font-family: "Roboto Mono" monospace;
 }
 
-.hover-box {
-  z-index: 10;
-  top: 48%;
-  left: 52.8%;  
+.search-box {
+  filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
 }
 
-.preferences-btn:hover {
-  cursor: pointer;
+
+.text-input:hover ~ .search-box {
+  animation: fade-in-and-pulse 3s infinite;
 }
 
-.img-btn:hover {
-  cursor: pointer;
-}
-.search-box:hover {
-    filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.5)) 
-            drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3))
-            drop-shadow(0 -12px 10px rgba(0, 89, 255, 0.2));
-    transition: filter 0.4s ease;
-    animation: pulse-glow 4s infinite;
+
+.text-input:not(:hover) ~ .search-box {
+  animation: fade-out 0.5s forwards;
 }
 
-@keyframes pulse-glow {
+
+.image-box {
+  filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
+}
+
+
+.image-box:hover {
+  animation: fade-in-and-pulse 3s infinite;
+}
+
+
+.image-box:not(:hover) {
+  animation: fade-out 0.5s forwards;
+}
+
+
+.preferences-box {
+  filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
+}
+
+
+.preferences-box:hover {
+  animation: fade-in-and-pulse 3s infinite;
+}
+
+
+.preferences-box:not(:hover) {
+  animation: fade-out 0.5s forwards;
+}
+
+
+@keyframes fade-in-and-pulse {
   0% {
-    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.2)) drop-shadow(0 -8px 10px rgba(0, 119, 255, 0.3)) drop-shadow(0 -12px 15px rgba(0, 89, 255, 0.5));
+    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
   }
-
-  50% {
-    filter: drop-shadow(0 -6px 3px rgba(0, 140, 255, 0.6)) drop-shadow(0 -10px 5px rgba(0, 119, 255, 0.7)) drop-shadow(0 -14px 10px rgba(0, 89, 255, 0.8));
+  33% {
+    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.5));
   }
-
+  66% {
+    filter: drop-shadow(0 -6px 10px rgba(0, 140, 255, 0.8));
+  }
   100% {
-    filter: drop-shadow(0 -4px 3px rgba(0, 132, 255, 0.2)) drop-shadow(0 -8px 8px rgba(0, 119, 255, 0.3)) drop-shadow(0 -12px 0px rgba(0, 89, 255, 0.4));
+    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
+  }
+}
+
+
+@keyframes fade-out {
+  0% {
+    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 -4px 5px rgba(0, 132, 255, 0));
   }
 }
