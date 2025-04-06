@@ -44,8 +44,8 @@ const map = L.map("map").setView([37.8, -96], 4);
             body: JSON.stringify({ lat, lng, brought, preferences }),
           });
           const txt = await r.text();
-          box.textContent = txt;
+          box.innerHTML = txt;
         } catch (err) {
-          box.textContent = "Error: " + err;
+          box.innerHTML = "Error: " + err;
         }
       });

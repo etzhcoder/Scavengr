@@ -20,6 +20,7 @@ CORS(app)
 
 SYSTEM_PROMPT = (
     "You are a recipe maker for campers. "
+    "Format the response according to HTML formatting rules but omit ```html"
     "I will give you: (1) a comma‑separated list of ingredients the camper brought, "
     "and (2) the campsite coordinates. Additionally, the camper may specify food preferences or dietary restrictions. "
     "First, figure out what wild ingredients can realistically be foraged around those coordinates (assume temperate‑zone forests if unsure). "
@@ -31,7 +32,6 @@ SYSTEM_PROMPT = (
     "In addition, for any ingredient that might be hard to find or if a substitution could improve the recipe based on the camper's preferences, "
     "provide smart substitution suggestions. "
     "Ensure the recipe is personalized and takes into account both the wild foraged ingredients and the camper's stated preferences."
-    r"Format line breaks using \n"
 )
 
 def chat(brought: str, lat: float, lng: float, preferences: str = "") -> str:

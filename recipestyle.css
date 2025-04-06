@@ -29,6 +29,24 @@ h1 {
 }
 
 #recipes {
-    scrollbar-width: thin;
+    height: 590px; /* or use max-height */
+    overflow-y: auto;
     padding-right: 4px;
+}
+
+#recipes::-webkit-scrollbar {
+    width: 8px; /* or adjust to your liking */
+}
+
+#recipes::-webkit-scrollbar-track {
+    background: transparent; /* no white track */
+}
+
+#recipes::-webkit-scrollbar-thumb {
+    background-color: #555; /* the actual scrollbar bar */
+    border-radius: 4px;
+}
+
+#recipes::-webkit-scrollbar-thumb:hover {
+    background-color: #777; /* optional hover effect */
 }
