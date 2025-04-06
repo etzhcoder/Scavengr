@@ -8,6 +8,7 @@ html {
 }
 
 .listrect {
+    z-index:5;
     position: relative;
     top: 50%;
     left: 25%;
@@ -15,6 +16,7 @@ html {
 }
 
 .maprect {
+    z-index:5;
     position: relative;
     top: 50%;
     transform: translate(-2.5%, -50%);

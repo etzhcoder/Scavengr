@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <span class="lists">
+    <span class="lists" style="z-index:5">
         <svg class="listrect" width="764" height="848" viewBox="0 0 764 848" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <foreignObject x="-46.7" y="-77.7" width="857.4" height="961.4">
@@ -69,11 +69,11 @@
             </foreignObject>
             <foreignObject x="12%" y="16%" width="600" height="600">
                 <div xmlns="http://www.w3.org/1999/xhtml" id="recipes"
-                     style="color:#fff;font-size:18px; line-height:1.4; overflow-y:scroll;"></div>
+                     style="color:#ffffff91;font-size:18px; line-height:1.4; overflow-y:scroll;"></div>
             </foreignObject>
         </svg>
     </span>
-    <span class="map">
+    <span class="map" style="z-index:5">
         <svg class="maprect" width="817" height="848" viewBox="0 0 817 848" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <foreignObject x="-46.7" y="-77.7" width="910.4" height="961.4">
@@ -161,3 +161,84 @@
 </body>
 
 </html>
+<script>
+    const shapes = [
+      `<svg width="402" height="402" viewBox="0 0 402 402" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="99.5" cy="302.5" r="302.5" fill="url(#paint0_linear_1_6)"/><defs><linearGradient id="paint0_linear_1_6" x1="99.5" y1="0" x2="99.5" y2="605" gradientUnits="userSpaceOnUse"><stop stop-color="#438A64"/><stop offset="1" stop-opacity="0"/></linearGradient></defs></svg>`,
+      `<svg width="345" height="420" viewBox="0 0 345 420" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="231.5" cy="188.5" r="231.5" fill="url(#paint0_linear_1_8)"/><defs><linearGradient id="paint0_linear_1_8" x1="231.5" y1="-43" x2="231.5" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#43758A"/><stop offset="1" stop-opacity="0"/></linearGradient></defs></svg>`,
+      `<svg width="184" height="229" viewBox="0 0 184 229" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect x="-45" y="83.55" width="167.1" height="167.1" transform="rotate(-30 -45 83.55)" fill="url(#paint0_linear_1_7)"/> <defs> <linearGradient id="paint0_linear_1_7" x1="102.863" y1="72.4436" x2="-82.4981" y2="376.499" gradientUnits="userSpaceOnUse"> <stop stop-color="#E27856"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+      `<svg width="409" height="251" viewBox="0 0 409 251" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect width="408.753" height="408.753" transform="matrix(-0.963943 -0.266109 -0.266109 0.963943 502.788 108.773)" fill="url(#paint0_linear_1_10)"/> <defs> <linearGradient id="paint0_linear_1_10" x1="361.697" y1="-27.1681" x2="106.956" y2="438.5" gradientUnits="userSpaceOnUse"> <stop stop-color="#E2C456"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+      `<svg width="276" height="177" viewBox="0 0 276 177" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect y="58.2361" width="225.007" height="225.007" transform="rotate(-15 0 58.2361)" fill="url(#paint0_linear_1_19)"/> <defs> <linearGradient id="paint0_linear_1_19" x1="164.791" y1="42.1013" x2="98.5588" y2="295.079" gradientUnits="userSpaceOnUse"> <stop stop-color="#4F5C9F"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+      `<svg width="319" height="340" viewBox="0 0 319 340" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M-0.00613648 339.324L38.2786 0.346971L318.74 197.19L-0.00613648 339.324Z" fill="url(#paint0_linear_1_12)"/> <defs> <linearGradient id="paint0_linear_1_12" x1="39.633" y1="-0.256993" x2="58.5" y2="551.5" gradientUnits="userSpaceOnUse"> <stop stop-color="#9F78B7"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+      `<svg width="224" height="218" viewBox="0 0 224 218" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M223.739 0.154586L163.494 217.737L0.633438 59.9357L223.739 0.154586Z" fill="url(#paint0_linear_1_13)"/> <defs> <linearGradient id="paint0_linear_1_13" x1="162.546" y1="217.991" x2="207.545" y2="-144.606" gradientUnits="userSpaceOnUse"> <stop stop-color="#788AB7"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+      `<svg width="551" height="386" viewBox="0 0 551 386" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M550.326 385.172L362.23 -128.066L0.196385 284.709L550.326 385.172Z" fill="url(#paint0_linear_1_15)"/> <defs> <linearGradient id="paint0_linear_1_15" x1="359.892" y1="-128.493" x2="539.665" y2="737.685" gradientUnits="userSpaceOnUse"> <stop stop-color="#AAAE7A"/> <stop offset="1" stop-opacity="0"/> </linearGradient> </defs> </svg>`,
+    ];
+  
+    const positionlist = [
+      [300, 780],
+      [1500, 200],
+      [100, 400],
+      [1400, 750],
+      [1000, 880],
+      [1100, 450],
+      [650, 610],
+      [550, 200],
+    ]
+  
+    const svgShapes = [];
+    shapes.forEach((svg, index) => {
+      const container = document.createElement("div");
+      container.innerHTML = svg;
+      const svgElement = container.firstChild;
+      svgElement.style.position = "fixed";
+      svgElement.style.left = positionlist[index][0] - 150 + "px";
+      svgElement.style.top = positionlist[index][1] - 160 + "px";
+      svgElement.style.overflow = "visible";
+      svgElement.style.zIndex = "0";
+      svgElement.style.transformOrigin = "center";
+  
+      applyRandomMovement(svgElement);
+      document.body.appendChild(svgElement);
+      svgShapes.push(svgElement);
+    });
+  
+    function applyRandomMovement(svgElement) {
+      svgElement.style.animation = '';
+      const useRotation = Math.random() > 0.66;
+      const duration = 10 + Math.random() * 8;
+      const animationName = `anim-${Math.random().toString(36).substr(2, 9)}`;
+  
+      if (useRotation) {
+        const endRotation = (Math.random() - 0.5) * 100;
+  
+        keyframes = `
+              @keyframes ${animationName} {
+                  0%, 100% { transform: rotate(0deg); }
+                  25% { transform: rotate(${endRotation}deg); }
+                  50% { transform: rotate(${endRotation + (Math.random() - 0.5) * 60}deg); }
+              }
+          `;
+      } else {
+  
+        keyframes = `
+              @keyframes ${animationName} {
+                  0%, 100% { transform: translate(0, 0); }
+                  33% { transform: translate(${(Math.random() - 0.5) * 130}px, ${(Math.random() - 0.5) * 130}px); }
+                  66% { transform: translate(${(Math.random() - 0.5) * 130}px, ${(Math.random() - 0.5) * 130}px); }
+              }
+          `;
+      }
+  
+      const style = document.createElement('style');
+      style.innerHTML = keyframes;
+      document.head.appendChild(style);
+      svgElement.style.animation = `${animationName} ${duration}s ease-in-out 1`;
+  
+      const onAnimationEnd = () => {
+        svgElement.removeEventListener('animationend', onAnimationEnd);
+        document.head.removeChild(style);
+        applyRandomMovement(svgElement);
+      };
+  
+      svgElement.addEventListener('animationend', onAnimationEnd);
+    }
+  </script>
