@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Webcam Scanner Modal/Container (initially hidden) -->
+<div id="foodScanner" style="display: none; position: relative; margin: 1rem auto; width: 640px;">
+    <video id="webcam" autoplay playsinline width="640" height="480" style="border: 1px solid #ccc;"></video>
+    <canvas id="overlay" width="640" height="480" style="position: absolute; top: 0; left: 0;"></canvas>
+    <button id="closeScanner" style="position:absolute; top:10px; right:10px;">Close</button>
+  </div>
+  
+  <!-- Button to activate the scanner -->
+  <button id="start-scan" style="margin: 1rem;">Scan for Food</button>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+<script>
+  let model;
+  const video = document.getElementById("webcam");
+  const overlay = document.getElementById("overlay");
+  const ctx = overlay.getContext("2d");
+  const scannerDiv = document.getElementById("foodScanner");
+
+  // Load the model when the page loads
+  cocoSsd.load().then(loadedModel => {
+    model = loadedModel;
+    console.log("COCO-SSD model loaded.");
+  });
+
+  // Set up the webcam stream
+  async function setupCamera() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { width: 640, height: 480 },
+        audio: false
+      });
+      video.srcObject = stream;
+      return new Promise(resolve => {
+        video.onloadedmetadata = () => {
+          resolve(video);
+        };
+      });
+    } catch (error) {
+      alert("Error accessing the webcam: " + error);
+    }
+  }
+
+  // Run detection on the video feed
+  async function detectFrame() {
+    if (model && video.readyState === 4) {
+      const predictions = await model.detect(video);
+      ctx.clearRect(0, 0, overlay.width, overlay.height);
+
+      predictions.forEach(prediction => {
+        // Filter for common food items; adjust as needed
+        if (["apple", "orange", "watermelon", "broccoli", "carrot", "sandwich", "hot dog"].includes(prediction.class)) {
+          // Draw bounding box
+          const [x, y, width, height] = prediction.bbox;
+          ctx.strokeStyle = "red";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(x, y, width, height);
+          ctx.font = "16px Arial";
+          ctx.fillStyle = "red";
+          ctx.fillText(prediction.class, x, y - 5);
+          // Prompt to add if not already added
+          if (!window.lastPrompted || window.lastPrompted !== prediction.class) {
+            window.lastPrompted = prediction.class;
+            setTimeout(() => {
+              if (confirm(`Detected a ${prediction.class}. Add it to your ingredient list?`)) {
+                addToIngredientList(prediction.class);
+              }
+              // Reset so it can prompt again for a new detection
+              window.lastPrompted = null;
+            }, 500); // small delay to avoid immediate pop-ups
+          }
+        }
+      });
+    }
+    requestAnimationFrame(detectFrame);
+  }
+
+  // Function to add food to the ingredient list (similar to your current implementation)
+  function addToIngredientList(foodName) {
+    let ingredients = JSON.parse(localStorage.getItem('campingIngredients')) || [];
+    if (!ingredients.includes(foodName)) {
+      ingredients.push(foodName);
+      localStorage.setItem('campingIngredients', JSON.stringify(ingredients));
+      // Optionally update the UI, e.g., by calling renderIngredients()
+      alert(`${foodName} added to your list!`);
+    }
+  }
+
+  // Event listeners to show/hide the scanner
+  document.getElementById("start-scan").addEventListener("click", async () => {
+    scannerDiv.style.display = "block";
+    await setupCamera();
+    detectFrame();
+  });
+
+  document.getElementById("closeScanner").addEventListener("click", () => {
+    scannerDiv.style.display = "none";
+    // Optionally, stop the video stream here if desired
+  });
+</script>
+
+</body>
+</html>
