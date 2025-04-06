@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="signup.css">
+  <title>Scavengr Signup</title>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Sign Up.</div>
+    <div class="form-container">
+      <form onsubmit="event.preventDefault(); if(this.checkValidity()){ location.href='login.html'; }">
+        <div class="input-group">
+          <input type="text" class="input-field" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+          <input type="email" class="input-field" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+          <input type="password" class="input-field" placeholder="Password" required>
+        </div>
+        <div class="input-group">
+          <input type="password" class="input-field" placeholder="Confirm Password" required>
+        </div>
+        <button type="submit" onclick="location.href='login.html'" class="sign-btn">Sign Up</button>
+        <div class="login-link">
+          Already have an account? <a href="#" onclick="location.href='login.html'">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

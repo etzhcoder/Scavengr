@@ -10,15 +10,14 @@
   <div class="container">
     <div class="logo">Scavengr.</div>
     <div class="form-container">
-      <form>
+      <form onsubmit="event.preventDefault(); if(this.checkValidity()){ location.href='index.html'; }">
         <div class="input-group">
           <input type="text" class="input-field" placeholder="Username" required>
         </div>
         <div class="input-group">
           <input type="password" class="input-field" placeholder="Password" required>
         </div>
-        <button type="submit" onclick="location.href='index.html'" class="login-btn">Login
-        </button>
+        <button type="submit" class="login-btn">Login</button>
         <div class="signup-link">
           Don't have an account? <a href="#" onclick="location.href='signup.html'">Sign up</a>
         </div>
