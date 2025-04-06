@@ -5,24 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="login.css">
   <title>Scavengr Login</title>
+
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCix3B9R1l2g0VW1NZbJ1KuVBxFiMkc1x8",
+      authDomain: "goon-2f083.firebaseapp.com",
+      projectId: "goon-2f083",
+      storageBucket: "goon-2f083.firebasestorage.app",
+      messagingSenderId: "134527009867",
+      appId: "1:134527009867:web:6c05706ed31f09efe079ce",
+      measurementId: "G-70TGX2511V"
+    };  
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <div class="container">
     <div class="logo">Scavengr.</div>
     <div class="form-container">
-      <form onsubmit="event.preventDefault(); if(this.checkValidity()){ location.href='index.html'; }">
+      <form id="login-form">
         <div class="input-group">
-          <input type="text" class="input-field" placeholder="Username" required>
+          <!-- Changed to email input for Firebase -->
+          <input type="email" id="login-email" class="input-field" placeholder="Email" required>
         </div>
         <div class="input-group">
-          <input type="password" class="input-field" placeholder="Password" required>
+          <input type="password" id="login-password" class="input-field" placeholder="Password" required>
+        </div>
+        <div class="forgot-password">
+          <a href="#">Forgot password?</a>
         </div>
         <button type="submit" class="login-btn">Login</button>
         <div class="signup-link">
-          Don't have an account? <a href="#" onclick="location.href='signup.html'">Sign up</a>
+          Don't have an account? <a href="signup.html">Sign up</a>
         </div>
       </form>
+      <div id="login-message" style="color: red; margin-top: 15px;"></div>
     </div>
   </div>
+
+  <script>
+    // Listen for login form submission and use Firebase to sign in.
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      
+      firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Successful login; redirect to the protected page (index.html).
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        document.getElementById("login-message").textContent = error.message;
+      });
+    });
+  </script>
 </body>
 </html>

@@ -5,30 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="signup.css">
   <title>Scavengr Signup</title>
+
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCix3B9R1l2g0VW1NZbJ1KuVBxFiMkc1x8",
+      authDomain: "goon-2f083.firebaseapp.com",
+      projectId: "goon-2f083",
+      storageBucket: "goon-2f083.firebasestorage.app",
+      messagingSenderId: "134527009867",
+      appId: "1:134527009867:web:6c05706ed31f09efe079ce",
+      measurementId: "G-70TGX2511V"
+    };  
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <div class="container">
     <div class="logo">Sign Up.</div>
     <div class="form-container">
-      <form onsubmit="event.preventDefault(); if(this.checkValidity()){ location.href='login.html'; }">
+      <form id="signup-form">
+        <!-- Added username input for displayName -->
         <div class="input-group">
-          <input type="text" class="input-field" placeholder="Username" required>
+          <input type="text" id="signup-username" class="input-field" placeholder="Username" required>
         </div>
         <div class="input-group">
-          <input type="email" class="input-field" placeholder="Email" required>
+          <input type="email" id="signup-email" class="input-field" placeholder="Email" required>
         </div>
         <div class="input-group">
-          <input type="password" class="input-field" placeholder="Password" required>
+          <input type="password" id="signup-password" class="input-field" placeholder="Password" required>
         </div>
         <div class="input-group">
-          <input type="password" class="input-field" placeholder="Confirm Password" required>
+          <input type="password" id="signup-confirm" class="input-field" placeholder="Confirm Password" required>
         </div>
-        <button type="submit" onclick="location.href='login.html'" class="sign-btn">Sign Up</button>
+        <button type="submit" class="sign-btn">Sign Up</button>
         <div class="login-link">
-          Already have an account? <a href="#" onclick="location.href='login.html'">Login</a>
+          Already have an account? <a href="login.html">Login</a>
         </div>
       </form>
+      <div id="signup-message" style="color: red; margin-top: 15px;"></div>
     </div>
   </div>
+
+  <script>
+    // Listen for signup form submission and use Firebase to register the user.
+    document.getElementById("signup-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("signup-username").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      const confirm = document.getElementById("signup-confirm").value;
+      
+      const messageEl = document.getElementById("signup-message");
+      
+      if (password !== confirm) {
+        messageEl.textContent = "Passwords do not match!";
+        return;
+      }
+      
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Update the user's display name with the username input.
+        userCredential.user.updateProfile({
+          displayName: username
+        }).then(() => {
+          // Registration successful; redirect to login page.
+          window.location.href = "login.html";
+        }).catch((error) => {
+          messageEl.textContent = error.message;
+        });
+      })
+      .catch((error) => {
+        messageEl.textContent = error.message;
+      });
+    });
+  </script>
 </body>
 </html>
